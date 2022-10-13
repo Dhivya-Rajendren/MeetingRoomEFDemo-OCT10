@@ -9,18 +9,29 @@ namespace MeetingRoomApp_EF
     {
         static void Main(string[] args)
         {
-            MeetingRoomDBContext _dbContext = new MeetingRoomDBContext();
 
-            List<MeetingRoom.Domain.MeetingRoom> meetingRooms = _dbContext.MeetingRooms.ToList();
-
-            Console.WriteLine("Displaying the Meeting Room Details");
-
-            foreach (var item in meetingRooms)
+            MeetingRoomRepository repo = new MeetingRoomRepository();
+            Console.WriteLine("Details in Meeting Room Table");
+            foreach (var item in repo.GetmeetingRoomList())
             {
-                Console.WriteLine($"Room Name : {item.RoomName.Trim()}, Location : {item.Location}");
+                Console.WriteLine($"{item.RoomName}, is Available in {item.Location}");
             }
 
+            Console.WriteLine("Enter the Meeting Room Details");
+            Console.WriteLine("Enter Room Name");
+            MeetingRoom.Domain.MeetingRoom meetingRoomObj = new MeetingRoom.Domain.MeetingRoom();
+            meetingRoomObj.RoomName = Console.ReadLine();
+            Console.WriteLine("Enter the Location");
+            meetingRoomObj.Location = Console.ReadLine();
+            Console.WriteLine("Enter the Room Type");
+            meetingRoomObj.RoomType=Console.ReadLine();
+            repo.AddNewMeetingRoom(meetingRoomObj);
 
+            Console.WriteLine("Details of Meeting Room after new meeting room insertion");
+            foreach (var item in repo.GetmeetingRoomList())
+            {
+                Console.WriteLine($"{item.RoomName}, is Available in {item.Location}");
+            }
         }
     }
 }
