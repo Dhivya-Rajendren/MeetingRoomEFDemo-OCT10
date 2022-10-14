@@ -10,5 +10,8 @@ namespace MeetingRoom.Data
     {
         List<MeetingRoom.Domain.MeetingRoom> GetMaaetingRooms();
         int AddNewMeetingRoom(MeetingRoom.Domain.MeetingRoom meeting);
+
+        int UpDateMeetingRoom();
+
     }
 }

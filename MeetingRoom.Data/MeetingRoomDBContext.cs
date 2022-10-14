@@ -1,6 +1,7 @@
 ﻿using MeetingRoom.Domain;
 using Microsoft.EntityFrameworkCore;
 using System;
+using Microsoft.Extensions.Logging;
 
 namespace MeetingRoom.Data
 {
@@ -15,7 +16,8 @@ namespace MeetingRoom.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=Dhivya-pc\\SqlExpress;Database=MeetingRoom_EFDemo;integrated security=true");
+            optionsBuilder.UseSqlServer("Server=Dhivya-pc\\SqlExpress;Database=MeetingRoom_EFDemo;integrated security=true").LogTo(Console.WriteLine, new [] {DbLoggerCategory.Database.Command.Name});
+                ;
         }
     }
 }

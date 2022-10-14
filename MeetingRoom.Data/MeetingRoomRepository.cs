@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MeetingRoom.Data
 {
-    public class MeetingRoomRepository
+    public class MeetingRoomRepository:IMeetingRoomRepository
     {
 
 
@@ -28,5 +28,17 @@ namespace MeetingRoom.Data
             return dbContext.SaveChanges();
         }
 
+        public List<Domain.MeetingRoom> GetMaaetingRooms()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int UpDateMeetingRoom()
+        {
+            MeetingRoomDBContext meetingRoomDBContext = new MeetingRoomDBContext();
+            var meetingRoom = meetingRoomDBContext.MeetingRooms.FirstOrDefault();
+            meetingRoom.RoomName = "Room- " +meetingRoom.RoomName.Trim() ;
+            return meetingRoomDBContext.SaveChanges();
+        }
     }
 }
